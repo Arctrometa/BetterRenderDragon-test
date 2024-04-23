@@ -24,10 +24,10 @@ public:
 
 	static bool customUniformsEnabled;
 
-	static bool vsyncDisabled;
-
 	static int uiKey;
 	static int reloadShadersKey;
+
+	static bool vsyncDisabled;
 
 	static std::atomic_bool dirty;
 

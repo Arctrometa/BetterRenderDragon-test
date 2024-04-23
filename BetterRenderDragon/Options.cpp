@@ -32,6 +32,8 @@ bool Options::customUniformsEnabled = false;
 
 bool Options::vsyncDisabled = true;
 
+int Options::reloadShadersKey = ImGuiKey_R;
+
 std::atomic_bool Options::dirty = false;
 
 std::string Options::optionsDir;

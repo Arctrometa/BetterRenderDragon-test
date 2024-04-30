@@ -27,8 +27,23 @@ public:
 	static int uiKey;
 	static int reloadShadersKey;
 
-	static bool vsyncDisabled;
+	static void initVsync(){
+        	auto vsyncsetting = Client::settings.getSettingByName<bool>("vsync");
+        	auto vsyncOption = Options::getOption("vsync");
 
+        	if(vsyncOption == nullptr) return;
+
+        	if (vsyncsetting->value && vsyncOption->getvalue())
+          	  vsyncOption->setvalue(true);
+        	else if (!vsyncsetting->value && !vsyncOption->getvalue())
+            	vsyncOption->setvalue(true);
+    	}
+	public:
+    static void initialize(const uintptr_t optionsEntryPtr){
+        optionsBaseEntry = (uintptr_t **) optionsEntryPtr;
+        initialized = true;
+        initVsync();
+    };
 	static std::atomic_bool dirty;
 
 	static bool init();

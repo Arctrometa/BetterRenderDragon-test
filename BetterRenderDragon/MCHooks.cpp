@@ -48,7 +48,7 @@ void RayTracingOptions_setLightingModel_Hook(void* This, LightingModels lighting
 	if (shouldForceEnableDeferredRendering() && lightingModel == LightingModels::Vanilla) {
 		lightingModel = LightingModels::Deferred;
 	}
-	
+
 	RayTracingOptions_setLightingModel(This, lightingModel);
 }
 
@@ -221,7 +221,7 @@ void initMCHooks() {
 			//1.20.30.02
 			"48 8B 41 08 48 8B 90 ? ? ? ? 48 85 D2 74 18"
 		);
-	 
+
 		//BoolOption::set
 		bool boolOptionSetHooked = TrySigHookNoWarning(BoolOption_set,
 			//1.20.30.02
@@ -310,13 +310,15 @@ void initMCHooks() {
 	if (TrySigHookNoWarning(mce_framebuilder_BgfxFrameBuilder_endFrame, "48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? B8 ? ? ? ? E8 ? ? ? ? 48 2B E0 0F 29 B4 24 ? ? ? ? 0F 29 BC 24 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B FA 48 89 55 ? 4C 8B F1")) {
 		//1.20.30.02
 		offsetToMaterialsManager = 768;
-	} else if (TrySigHookNoWarning(mce_framebuilder_BgfxFrameBuilder_endFrame, 
+	} else if (TrySigHookNoWarning(mce_framebuilder_BgfxFrameBuilder_endFrame,
 		//1.20.60.04
 		"48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? B8 ? ? ? ? E8 ? ? ? ? 48 2B E0 0F 29 B4 24 ? ? ? ? 0F 29 BC 24 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B EA",
 		//1.21.0.03
 		"48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? B8 ? ? ? ? E8 ? ? ? ? 48 2B E0 0F 29 B4 24 ? ? ? ? 0F 29 BC 24 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 48 8B F2 48 89 55",
 		//1.21.20.24 preview
 		"48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? B8 ? ? ? ? E8 ? ? ? ? 48 2B E0 0F 29 B4 24 ? ? ? ? 0F 29 BC 24 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 48 8B F2 48 8B F9"
+		//1.21.23
+		"03 48 83 C4 20 5B C3 C6 41 78 02 48 83 C4 20 5B C3 C6 41 40 FF 4C 8B C2 48 0F BE 4A 40 48 8D 54  24 30 48 FF C1 48 89 5C 24 30 E8 F1 EE 02 00 48 8B C3 C6 43 78 01 48 83 C4 20 5B C3 4C 8B C2 E8"
 	)) {
 		offsetToMaterialsManager = 816;
 	} else {

@@ -48,7 +48,6 @@ void RayTracingOptions_setLightingModel_Hook(void* This, LightingModels lighting
 	if (shouldForceEnableDeferredRendering() && lightingModel == LightingModels::Vanilla) {
 		lightingModel = LightingModels::Deferred;
 	}
-
 	RayTracingOptions_setLightingModel(This, lightingModel);
 }
 
@@ -221,7 +220,6 @@ void initMCHooks() {
 			//1.20.30.02
 			"48 8B 41 08 48 8B 90 ? ? ? ? 48 85 D2 74 18"
 		);
-
 		//BoolOption::set
 		bool boolOptionSetHooked = TrySigHookNoWarning(BoolOption_set,
 			//1.20.30.02
@@ -271,7 +269,6 @@ void initMCHooks() {
 	//} else {
 	//	printf("Failed to hook dragon::materials::MaterialUniformMap::setUniform<glm::vec4>\n");
 	//}
-
 	//ResourcePackManager::ResourcePackManager
 	TrySigHook(ResourcePackManager_constructor,
 		//1.19.80
@@ -286,7 +283,7 @@ void initMCHooks() {
 		"4C 8B DC 53 55 56 57 41 56 48 81 EC ? ? ? ? 41 0F B6 E9 49 8B F0 48 8B FA 48 8B D9",
 		//1.21.23
 		"4C 8B DC 53 55 56 57 41 56 48 81 EC F0 00 00 00 41 0F 29 73 C8 48 8B 05 0C 43 17 03 48 33 C4 48"
-
+);
 	TrySigHook(readFile,
 		//1.19.40
 		"48 89 5C 24 ? 55 56 57 41 56 41 57 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 70 49 8B C0",
